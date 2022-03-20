@@ -118,7 +118,7 @@ class _CovidResultState extends State<CovidResult> {
                         final file = await FilePickerHelper().getPDF();
                         if (file != null) {
                           Fluttertoast.showToast(
-                              msg: "File Uploaded",
+                              msg: "File Selected",
                               backgroundColor: basicthemecolor);
                           setState(() {
                             _image = file;
@@ -210,7 +210,7 @@ class _CovidResultState extends State<CovidResult> {
 
     Dio dio = Dio();
     Response responce;
-    ;
+
     try {
       responce = await dio.post(
         apiURL,
@@ -220,7 +220,7 @@ class _CovidResultState extends State<CovidResult> {
         if (responce.data['success'] == true) {
           Fluttertoast.showToast(
               msg: "Uplodated SucessFully", backgroundColor: basicthemecolor);
-
+          Navigator.pop(context, false);
           return '';
         } else if (responce.data['success'] == false) {
           Fluttertoast.showToast(
