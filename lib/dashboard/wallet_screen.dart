@@ -21,10 +21,11 @@ int? balance;
 var loading = false;
 var a = true;
 
-List<PaymentHisModel> moneyhistory = [];
-late Future requestList;
-
 class _MyWalletState extends State<MyWallet> {
+  List<PaymentHisModel> moneyhistory = [];
+  late Future requestList;
+  ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     setState(() {
@@ -41,6 +42,7 @@ class _MyWalletState extends State<MyWallet> {
 
   @override
   void dispose() {
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -246,6 +248,7 @@ class _MyWalletState extends State<MyWallet> {
                     return ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
+                      controller: scrollController,
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return MoneyHistory(
