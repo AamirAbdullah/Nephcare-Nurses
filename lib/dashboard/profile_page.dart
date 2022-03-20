@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nephcare_nurse/dashboard/cells/withdraw_requests.dart';
 import 'package:nephcare_nurse/helper/colors.dart';
 import 'package:nephcare_nurse/main.dart';
 import 'package:nephcare_nurse/models/userprofilemodal.dart';
@@ -254,26 +255,34 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    CupertinoIcons.suit_heart,
-                                    size: 24,
-                                    color: basicthemecolor,
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text(
-                                    'Favorites',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const WithDrawRequests()),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.suit_heart,
+                                      size: 24,
                                       color: basicthemecolor,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      'Favorites',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: basicthemecolor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               GestureDetector(
                                 child: Icon(
