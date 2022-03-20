@@ -27,7 +27,7 @@ Future<String> updateProfileApi(
   });
   Dio dio = Dio();
   Response responce;
-  print(formData);
+  // print(formData);
   try {
     // print('Enter in try');
     responce = await dio.post(

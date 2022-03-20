@@ -69,7 +69,9 @@ extension EmailValidator on String {
 
 // const String baseUrl = 'http://192.168.18.62/nephcare/public/api/';
 // const String baseUrl = 'https://nbrarts.com/nephcare/public/api/';
-const String baseUrl = 'https://secureneph.com/public/api/';
+// const String baseUrl = 'https://secureneph.com/public/api/';
+const String baseUrl = 'https://secureneph.com/api/';
+// const String baseUrl = 'https://secureneph.com/public/api/';
 
 //DropDown button theme
 InputDecoration dropdowndecoration() {

@@ -1,103 +1,92 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nephcare_nurse/helper/colors.dart';
+import 'package:nephcare_nurse/models/payment_history_model.dart';
 
-class WithDrawRequests extends StatefulWidget {
-  const WithDrawRequests({Key? key}) : super(key: key);
+class MoneyHistory extends StatefulWidget {
+final PaymentHisModel homeIndex;
+  const MoneyHistory({Key? key, required this.homeIndex}) : super(key: key);
 
   @override
-  State<WithDrawRequests> createState() => _WithDrawRequestsState();
+  State<MoneyHistory> createState() => _MoneyHistoryState();
 }
 
-class _WithDrawRequestsState extends State<WithDrawRequests> {
+class _MoneyHistoryState extends State<MoneyHistory> {
   @override
   Widget build(BuildContext context) {
-    var a = true;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Container(
+        child: Card(
+      margin:
+      const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)),
+      shadowColor: Colors.grey,
+      child: Container(
+        padding: const EdgeInsets.only(
+            left: 12, bottom: 10, top: 5, right: 12),
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20,left: 10,right: 10,bottom: 10),
+              padding: const EdgeInsets.fromLTRB(0, 15, 15, 4),
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white60,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 5),
-                    color: HexColor('#404B63').withOpacity(0.3),
-                    blurRadius: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Amount: \$'+
+                                      widget.homeIndex.amount.toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  widget.homeIndex.time.toString().substring(0,10),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              widget.homeIndex.paymentstatus == 0
+                                  ? CupertinoIcons.check_mark
+                                  : CupertinoIcons.question,
+                              size: 30,
+                              color: widget.homeIndex.paymentstatus == 0
+                                  ? Colors.green
+                                  : Colors.red,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-              ),
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(15, 12, 0, 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Payment History',
-                      style: TextStyle(
-                        color: basicthemecolor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 15, 15, 4),
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // const SizedBox(
-                          //   height: 13,
-                          // ),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        '25\$',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      SizedBox(height: 5,),
-                                      Text(
-                                        '24/3/2022',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    a == true ?
-                                    CupertinoIcons.check_mark :
-                                    CupertinoIcons.question,
-                                    size: 30,
-                                    color: a == true ? Colors.green: Colors.red,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
               ),
             ),
           ],
         ),
       ),
-    );
+    ),
+      );
+
   }
 }

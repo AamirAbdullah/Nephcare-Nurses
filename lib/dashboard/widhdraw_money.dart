@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nephcare_nurse/helper/colors.dart';
 import 'package:nephcare_nurse/helper/theme.dart';
+import 'package:nephcare_nurse/models/payment_history_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WidthDrawMoney extends StatefulWidget {
@@ -21,21 +22,15 @@ class _WidthDrawMoneyState extends State<WidthDrawMoney> {
   String money = '';
   String error = '';
   final formKey = GlobalKey<FormState>();
+  List<PaymentHisModel> moneyhistory = [];
   int? bal;
   var loading;
 
-  // @override
-  // void initState() {
-  //   setState(() {
-  //     loading = true;
-  //   });
-  //   walletFunction().then((value) => {
-  //     setState(() {
-  //       loading = false;
-  //     })
-  //   });
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -52,9 +47,7 @@ class _WidthDrawMoneyState extends State<WidthDrawMoney> {
           color: Colors.white,
         ),
       ),
-      body: loading == true
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
+      body: Column(
               children: [
                 Expanded(
                   child: SingleChildScrollView(
@@ -77,7 +70,7 @@ class _WidthDrawMoneyState extends State<WidthDrawMoney> {
                                 color: Colors.black,
                               ),
                               decoration: inputField1(
-                                label1: 'Ammount',
+                                label1: 'Amount',
                                 context: context,
                                 prefixicon: Icon(
                                   CupertinoIcons.money_dollar,
@@ -172,22 +165,22 @@ class _WidthDrawMoneyState extends State<WidthDrawMoney> {
       'amount': int.parse(money),
       'details': bankdetail,
     });
-    print('ddddddddddddddddddddddddddd');
+
     Dio dio = Dio();
     Response responce;
-    print(formData);
+    // print(formData);
     try {
       responce = await dio.post(
         apiURL,
         options: Options(headers: {"Authorization": "Bearer $token"}),
         data: formData,
       );
-      print(responce.data);
+      // print(responce.data);
       if (responce.statusCode == 200) {
         var res1;
         if (responce.data['success'] == true) {
           res1 = responce.data['success_message'];
-          print(res1);
+          // print(res1);
           Fluttertoast.showToast(msg: res1, backgroundColor: basicthemecolor);
           Navigator.pop(context, false);
           return 'success';
