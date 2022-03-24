@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +51,7 @@ class _MyWalletState extends State<MyWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: loading == true ? Center(child: CircularProgressIndicator()) :
+      body: loading == true ? const Center(child: CircularProgressIndicator()) :
       SingleChildScrollView(
         child: Column(
           children: [
@@ -210,7 +212,7 @@ class _MyWalletState extends State<MyWallet> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -221,17 +223,9 @@ class _MyWalletState extends State<MyWallet> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  // Container(
-                  //   child: ListView.builder(
-                  //       itemCount: moneyhistory.length,
-                  //       itemBuilder: (BuildContext context, int index) =>
-                  //           money_history_card(
-                  //             hostime: moneyhistory[index],
-                  //           )),
-                  // ),
                 ],
               ),
             ),
@@ -320,7 +314,7 @@ class _MyWalletState extends State<MyWallet> {
         options: Options(headers: {"Authorization": "Bearer $token"}),
         data: formData,
       );
-      print(responce.data);
+      // print(responce.data);
       if (responce.statusCode == 200) {
         var res1;
         if (responce.data['success'] == true) {
